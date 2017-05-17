@@ -1,0 +1,291 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>CALCULADORA</title>
+
+<style>
+
+	body {
+		background: #1a1a1a;
+	}
+
+h1 {
+	color: #ffffff;
+	font-family: sans-serif;
+    position: static;
+}
+
+h2{
+	color: #ffffff;
+	font-family: sans-serif;
+    position: static;
+}
+
+	.calculadora {
+		background-color:#000000;
+		width: 200px;
+		border-style: solid;
+		border-color: #ffffff;
+		margin: 10px;
+		padding: 10px;
+		position: static;
+    text-align: center;
+	}
+
+	.display {
+		background-color: #000000;
+		color: #00ff00; 
+		text-align: right;
+		border-color: #000000;
+		border-style: solid;
+		font-size: 20px;
+		height: 40px;
+		width: 160px;
+	}
+
+	.pantalla {
+		border-style: solid;
+		border-color: #ffffff
+	}
+
+	.buttonC {
+	 	width: 150px;
+		height: 40px;
+		text-align: center;
+		background-color: #000000;
+		color: #ffffff; 
+		border-style: solid;
+		border-color: #ffffff;
+		border-width: 0.1px;
+		font-weight: bold;
+		font-size: 20px;
+
+	}
+	.button {
+		text-align: center;
+		text-align: center;
+		width: 41px;
+		height: 41px;
+		background-color: #000000;
+		color: #ffffff; 
+		border-style: solid;
+		border-color: #ffffff;
+		border-width: 0.1px;
+		font-weight: bold;
+		font-size: 20px;
+	}
+
+</style>
+
+<script>
+	var cifra = "";
+	var acumulado = 0;
+	var sumar = false;
+	var restar = false;
+	var multiplicar = false;
+	var dividir = false;
+	var primeraOp = true;
+
+function pantalla(numero) {
+document.getElementById("display").value = cifra + numero;
+cifra=document.getElementById("display").value;
+}
+
+function coma(decimal) {
+document.getElementById("display").value = cifra + ".";
+cifra=document.getElementById("display").value;
+}
+
+function suma() {
+	if (primeraOp==false) {
+		if (restar){
+			acumulado = acumulado - parseFloat(cifra);
+			document.getElementById("display").value=acumulado;
+		} else if (dividir) {
+			acumulado = acumulado / parseFloat(cifra);
+			document.getElementById("display").value=acumulado;
+		} else if (multiplicar) {
+			acumulado = acumulado * parseFloat(cifra);
+			document.getElementById("display").value=acumulado;
+		} else {
+			acumulado = acumulado + parseFloat(cifra);
+			document.getElementById("display").value=acumulado;
+		}
+	} else {
+		acumulado = parseFloat(cifra);
+		primeraOp = false;
+	}
+		cifra = "";
+		multiplicar=false;
+		sumar = true;
+		restar = false;
+		dividir = false;
+}
+
+function multiplica() {
+	if (primeraOp==false) {
+		if (sumar){
+			acumulado = acumulado + parseFloat(cifra);
+			document.getElementById("display").value=acumulado;
+		} else if (restar) {
+			acumulado = acumulado - parseFloat(cifra);
+			document.getElementById("display").value=acumulado;
+		} else if (dividir) {
+			acumulado = acumulado / parseFloat(cifra);
+			document.getElementById("display").value=acumulado;
+		} else {
+			acumulado = acumulado * parseFloat(cifra);
+			document.getElementById("display").value=acumulado;
+		} 
+	} else {
+		acumulado = parseFloat(cifra);
+		primeraOp = false;
+	}
+		cifra = "";
+		multiplicar=true;
+		sumar = false;
+		restar = false;
+		dividir = false;
+}
+
+function divide() {
+	if (primeraOp==false) {
+		if (sumar){
+			acumulado = acumulado + parseFloat(cifra);
+			document.getElementById("display").value=acumulado;
+		} else if (restar) {
+
+			acumulado = acumulado - parseFloat(cifra);
+			document.getElementById("display").value=acumulado;
+		} else if (multiplicar) {
+			acumulado = acumulado * parseFloat(cifra);
+			document.getElementById("display").value=acumulado;
+		} else {
+			acumulado = acumulado / parseFloat(cifra);
+			document.getElementById("display").value=acumulado;
+		}
+	} else {
+		acumulado = parseFloat(cifra);
+		primeraOp = false;
+	}
+		cifra = "";
+		multiplicar=false;
+		sumar = false;
+		restar = false;
+		dividir = true;
+}
+
+function resta() {
+	if (primeraOp==false) {
+		if (sumar){
+			acumulado = acumulado + parseFloat(cifra);
+			document.getElementById("display").value=acumulado;
+		} else if (dividir) {
+			acumulado = acumulado / parseFloat(cifra);
+			document.getElementById("display").value=acumulado;
+		} else if (multiplicar) {
+			acumulado = acumulado * parseFloat(cifra);
+			document.getElementById("display").value=acumulado;
+		} else {
+			acumulado = acumulado - parseFloat(cifra);
+			document.getElementById("display").value=acumulado;
+		}
+	} else {
+		acumulado = parseFloat(cifra);
+		primeraOp = false;
+	}
+		cifra = "";
+		multiplicar=false;
+		sumar = false;
+		restar = true;
+		dividir = false;
+}
+
+function igual() {
+	if (sumar) {
+	acumulado = acumulado + parseFloat(cifra);
+	document.getElementById("display").value=acumulado;
+		multiplicar=false;
+		sumar = true;
+		restar = false;
+		dividir = false;
+	} else if (restar) {
+	acumulado = acumulado - parseFloat(cifra);
+	document.getElementById("display").value=acumulado;
+		multiplicar=false;
+		sumar = false;
+		restar = true;
+		dividir = false;
+	} else if (multiplicar) {
+	acumulado = acumulado * parseFloat(cifra);
+	document.getElementById("display").value=acumulado;
+		multiplicar=true;
+		sumar = false;
+		restar = false;
+		dividir = false;
+	} else if (dividir) {
+	acumulado = acumulado / parseFloat(cifra);
+	document.getElementById("display").value=acumulado;
+		multiplicar=false;
+		sumar = false;
+		restar = false;
+		dividir = true;
+	} else {
+		acumulado = parseFloat(cifra);
+		primeraOp = false;
+	}
+		multiplicar=false;
+		sumar = false;
+		restar = false;
+		dividir = false;
+}
+</script>
+
+</head>
+<body>
+
+<h1>CALCULADORA</h1>
+<h2>Ejercicio de JavaScript</h2>
+<div class="calculadora">
+<form id="calculadora">
+<div class="pantalla">
+<input class="display" type="text" id="display" size="25">
+</div>
+<p>
+<input class="buttonC" type="button" id="Cbutton" style="color: #ffffff;" value="C" onmouseover="style.color='#ff0000',style.background='#6d0a03'" onmouseout="style.color='#ffffff', style.background='#000000'" onclick="javascript:location.reload()" />
+</p>
+
+<p>
+<input class="button" type="button" value="7" onClick="pantalla(7)"onmouseover="style.background='#bababa'" onmouseout="style.background='#000000'" />
+<input class="button" type= "button" value="8" onClick="pantalla(8)" onmouseover="style.background='#bababa'" onmouseout="style.background='#000000'" />
+<input class="button" type="button" value="9" onClick="pantalla(9)" onmouseover="style.background='#bababa'" onmouseout="style.background='#000000'" />
+<input class="button" type="button" value="+" onClick="suma()" onmouseover="style.color='#ffffff', style.background='#0e350d'" onmouseout="style.background='#000000', style.color='#ffffff'" />
+</p>
+<p>
+<input class="button" type="button" value="4" onClick="pantalla(4)" onmouseover="style.background='#bababa'" onmouseout="style.background='#000000'" />
+<input class="button" type="button" value="5" onClick="pantalla(5)" onmouseover="style.background='#bababa'" onmouseout="style.background='#000000'" />
+<input class="button" type="button" value="6" onClick="pantalla(6)" onmouseover="style.background='#bababa'" onmouseout="style.background='#000000'" />
+<input class="button" type="button" value="-" onClick="resta()" onmouseover="style.color='#ffffff', style.background='#0e350d'" onmouseout="style.background='#000000', style.color='#ffffff'" />
+</p>
+<p>
+<input class="button" type="button" value="1" onClick="pantalla(1)" onmouseover=" style.background='#bababa'" onmouseout="style.background='#000000'"/>
+<input class="button" type="button" value="2" onClick="pantalla(2)" onmouseover=" style.background='#bababa'" onmouseout="style.background='#000000'"/>
+<input class="button" type="button" value="3" onClick="pantalla(3)" onmouseover=" style.background='#bababa'" onmouseout="style.background='#000000'" />
+<input class="button" type="button" value="×" onClick="multiplica()" onmouseover="style.color='#ffffff', style.background='#0e350d'" onmouseout="style.background='#000000', style.color='#ffffff'" />
+</p>
+<p>
+<input class="button" type="button" value="0" onClick="pantalla(0)" onmouseover="style.background='#bababa'" onmouseout="style.background='#000000'"/>
+<input class="button" type="button" value="." onClick="coma()" onmouseover="style.background='#bababa'" onmouseout="style.background='#000000'" />
+<input class="button" type="button" value="=" onClick="igual()" onmouseover="style.color='#00ff00', style.background='#099107'" onmouseout="style.background='#000000', style.color='#ffffff'" />
+<input class="button" type="button" value="÷"  onClick="divide()" onmouseover="style.color='#ffffff', style.background='#0e350d'" onmouseout="style.background='#000000', style.color='#ffffff'" />
+</p>
+</form>
+</div>
+
+<script>
+	document.getElementById("display").value = 0;
+</script>
+
+</body>
+</html>
