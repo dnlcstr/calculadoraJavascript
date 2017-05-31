@@ -6,21 +6,18 @@
 
 <style>
 
-	body {
+body {
 		background: #1a1a1a;
 	}
 
-h1 {
-	color: #ffffff;
-	font-family: sans-serif;
-    position: static;
-}
+	.contenedor {
+	display: flex;
+	height: 100vh;
+	font-size: 20px;
+	align-items: center;
+	justify-content: center;
+	}
 
-h2{
-	color: #ffffff;
-	font-family: sans-serif;
-    position: static;
-}
 
 	.calculadora {
 		background-color:#000000;
@@ -245,8 +242,7 @@ function igual() {
 </head>
 <body>
 
-<h1>CALCULADORA</h1>
-<h2>Ejercicio de JavaScript</h2>
+<div class="contenedor">
 <div class="calculadora">
 <form id="calculadora">
 <div class="pantalla">
@@ -282,7 +278,7 @@ function igual() {
 </p>
 </form>
 </div>
-
+</div>
 <script>
 	document.getElementById("display").value = 0;
 </script>
